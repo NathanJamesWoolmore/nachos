@@ -896,22 +896,25 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
             return;
         }
 
-        // First remove any illegal characters
-        Editable text = getText();
-        CharSequence subText = text.subSequence(start, end);
-        CharSequence withoutIllegalCharacters = removeIllegalCharacters(subText);
+        //Below has been commented out because no illegal characters in app are being used.
+        //this was causing and index out of bounds exception - solution tab this out as not needed (specifically for my app).
 
-        // Check if illegal characters were found
-        if (withoutIllegalCharacters.length() < subText.length()) {
-            text.replace(start, end, withoutIllegalCharacters);
-            end = start + withoutIllegalCharacters.length();
-            clearComposingText();
-        }
-
-        if (start == end) {
-            // If start and end are the same here, it means only illegal characters were inserted so there's nothing left to do
-            return;
-        }
+//        // First remove any illegal characters
+//        Editable text = getText();
+//        CharSequence subText = text.subSequence(start, end);
+//        CharSequence withoutIllegalCharacters = removeIllegalCharacters(subText);
+//
+//        // Check if illegal characters were found
+//        if (withoutIllegalCharacters.length() < subText.length()) {
+//            text.replace(start, end, withoutIllegalCharacters);
+//            end = start + withoutIllegalCharacters.length();
+//            clearComposingText();
+//        }
+//
+//        if (start == end) {
+//            // If start and end are the same here, it means only illegal characters were inserted so there's nothing left to do
+//            return;
+//        }
 
         // Then handle chip terminator characters
         if (mChipTokenizer != null && mChipTerminatorHandler != null) {
